@@ -1,0 +1,16 @@
+{
+  
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "fastify": "^3.27.0",
+    "nodemon": "^2.0.15"
+  },
+  "name": "mega",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/saeed-developer/mega.git",
+  "author": "saeed",
+  "license": "MIT"
+}
