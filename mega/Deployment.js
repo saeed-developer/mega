@@ -4,8 +4,6 @@ require('dotenv').config({path : './config/.env'})
 fastify.post('/master' , async(request, reply)=>{
 let header  =  JSON.stringify(request.headers)
 let body = JSON.stringify(request.body )
-header = 
-body = 
 await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n`, {flag : 'a+'})
 })
 const start = async(port)=>{
