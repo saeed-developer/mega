@@ -9,8 +9,9 @@ require('dotenv').config({path : './config/.env'})
 fastify.post('/master' , async(request, reply)=>{
 let header  =  JSON.stringify(request.headers)
 let body = JSON.stringify(request.body)
-await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n`, {flag : 'a+'}) 
-await git.pull()
+const status = await git.status()
+await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n git-status: ${JSON.stringify(status)} \n`  , {flag : 'a+'}) 
+
 reply.send(null) 
 })
 const start = async(port)=>{
