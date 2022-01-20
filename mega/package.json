@@ -1,12 +1,13 @@
 {
   "scripts": {
     "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  ",
-    "Deploy":"nodemon Deployment",
-    "Auth":"nodemon Authentication"
+    "Deploy": "nodemon Deployment",
+    "Auth": "nodemon Authentication"
   },
   "dependencies": {
     "fastify": "^3.27.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "simple-git": "^3.0.3"
   },
   "name": "mega",
   "version": "1.0.0",
