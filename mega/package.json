@@ -1,7 +1,8 @@
 {
-  
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  ",
+    "Deploy":"nodemon Deployment",
+    "Auth":"nodemon Authentication"
   },
   "dependencies": {
     "fastify": "^3.27.0",
@@ -12,5 +13,9 @@
   "main": "server.js",
   "repository": "https://github.com/saeed-developer/mega.git",
   "author": "saeed",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "dotenv": "^14.2.0"
+  }
 }
