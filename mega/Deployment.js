@@ -1,11 +1,12 @@
 const fastify = require('fastify')({logger : true})
+const {writeFile} = require('fs/promises')
 require('dotenv').config({path : './config/.env'})
 fastify.post('/master' , async(request, reply)=>{
-const header  =  request.headers
-const body = request.body
-console.log('header ======>',header)
-console.log('body =====>' , body )
-console.log('test')
+let header  =  JSON.stringify(request.headers)
+let body = JSON.stringify(request.body )
+header = 
+body = 
+await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n`, {flag : 'a+'})
 })
 const start = async(port)=>{
     try { 
