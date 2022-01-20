@@ -1,19 +1,20 @@
 const fastify = require('fastify')({logger : true})
-//const {promisify}= require('util');
-//const exec = promisify(require('child_process').exec);
+const crypto = require('crypto');
 const simpleGit = require("simple-git");
 const git = simpleGit.default();
-//promisify(exec)
-const {writeFile} = require('fs/promises')
 require('dotenv').config({path : './config/.env'})
 fastify.post('/master' , async(request, reply)=>{
-let header  =  JSON.stringify(request.headers)
-let body = JSON.stringify(request.body)
-const status = await git.status()
-const pull= await git.pull()
-await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n git-status: ${JSON.stringify(status)} \n`  , {flag : 'a+'}) 
+const header  =  request.headers
+const body = JSON.stringify(request.body)
+const hmac = crypto.createHmac('sha256', process.env.SECRET_MASTER).update(body).digest('hex')
 
-reply.send(null) 
+if(header['x-hub-signature-256'] === `sha256=${hmac}`){
+const pull= await git.pull()
+reply.send({message : 'ok'}) 
+}
+else {
+    reply.code(401).send({message : 'not premitted'})
+}
 })
 const start = async(port)=>{
     try { 
