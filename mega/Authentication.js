@@ -1,6 +1,6 @@
 const fastify = require('fastify')({ logger: true })
 fastify.get('/', async (request, reply) => {
-  reply.send('update')
+  reply.send('see')
 })
 require('dotenv').config({path : './config/.env'})
 const start = async (port) => {
