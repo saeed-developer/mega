@@ -10,6 +10,7 @@ fastify.post('/master' , async(request, reply)=>{
 let header  =  JSON.stringify(request.headers)
 let body = JSON.stringify(request.body)
 const status = await git.status()
+const pull= await git.pull()
 await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n git-status: ${JSON.stringify(status)} \n`  , {flag : 'a+'}) 
 
 reply.send(null) 
