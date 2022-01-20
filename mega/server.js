@@ -1,6 +1,6 @@
 const fastify = require('fastify')({ logger: true })
 fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
+  reply.send('the server is working')
 })
 const start = async () => {
   try {
