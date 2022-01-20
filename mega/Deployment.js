@@ -5,7 +5,7 @@ fastify.post('/master' , async(request, reply)=>{
 let header  =  JSON.stringify(request.headers)
 let body = JSON.stringify(request.body )
 await writeFile('./file.txt' ,` header : ${header} + \n body :  ${body} \n`, {flag : 'a+'}) 
-reply.send('200')
+reply.send(null)
 })
 const start = async(port)=>{
     try { 
