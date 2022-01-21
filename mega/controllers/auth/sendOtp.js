@@ -13,7 +13,7 @@ module.exports.sendOtp =  async function  (request , reply){
     "op" : "send",
     "uname" : "09374613195",
     "pass":  "faraz3242056663", 
-    "message" : `کدتایید شما : ${otp} \n زمان ارسال : ${new Date().toString().slice(16 , 24)}`,  
+    "message" : `کدتایید شما : ${otp} \n زمان ارسال : ${new Date(Date.now() + 12600000).toString().slice(16 ,24)}`,  
     "from": "3000505",
     "to" : [String(request.body.number)],     
   })
