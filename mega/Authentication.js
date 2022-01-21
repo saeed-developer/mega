@@ -1,6 +1,6 @@
 const fastify = require('fastify')({ logger: true })
 fastify.get('/', async (request, reply) => {
-  reply.send({message : 'server balast'})
+  reply.send('سلام زهرا')
 })
 require('dotenv').config({path : './config/.env'})
 const start = async (port) => {
