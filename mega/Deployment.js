@@ -13,7 +13,9 @@ const hmac = crypto.createHmac('sha256', process.env.SECRET_MASTER).update(Strin
 if(header['x-hub-signature-256'] === `sha256=${hmac}`){
 const pull= await git.pull()
 if(body.commits[0].modified.includes('mega/package.json')){
-await exec('rm package-lock.json;rm yarn.lock;yarn')
+/*await exec('rm yarn.lock')
+await exec('rm package-lock.json')*/
+await exec('npm install')
 }
 reply.send({message : 'ok'}) 
 }
