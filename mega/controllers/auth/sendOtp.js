@@ -1,9 +1,5 @@
 const axios = require('axios')
 module.exports.sendOtp =  async function  (request , reply){ 
-    if(String(request.body.number).length > 13){
-        reply.code(400).send({message : 'your number can not be more than 13 digits'})
-    }
-    else {
        let otp = '';
        for(let number = 0 ;number < 6 ; number++){ 
        const digit =Math.floor(Math.random() * 10); 
@@ -21,4 +17,4 @@ module.exports.sendOtp =  async function  (request , reply){
     console.log('farazsms ======>',farazsms.status)
   await this.redis.set(request.body.number, otp , "EX",180 )           
   reply.send({message : 'sms has sent'})  
-  }}}  
+  }}  

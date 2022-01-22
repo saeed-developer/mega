@@ -1,6 +1,7 @@
 module.exports.sendOtpSchema = {
     body :{
       type : 'object',
-      required: ['number'],   
-  }
-  } 
+      required: ['number'],
+      properties : {number : {type : 'string',maxLength:13 }}
+ 
+  }} 
