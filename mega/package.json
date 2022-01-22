@@ -3,10 +3,11 @@
     "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\" ",
     "Deploy": "nodemon Deployment",
     "Auth": "nodemon Authentication",
-    "View" : "nodemon View"
+    "View": "nodemon View"
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "cors": "^2.8.5",
     "ejs": "^3.1.6",
     "fastify": "^3.27.0",
     "fastify-redis": "^4.3.3",
