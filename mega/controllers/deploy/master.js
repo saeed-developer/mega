@@ -9,6 +9,7 @@ module.exports.masterBranch = async function(request, reply){
     const StringBody = JSON.stringify(request.body)
     const hmac = crypto.createHmac('sha256', process.env.SECRET_MASTER).update(StringBody).digest('hex')
     if(header['x-hub-signature-256'] === `sha256=${hmac}`){
+    const stash = await git.stash()
     const pull= await git.pull()
     if(body.commits[0].modified.includes('mega/package.json')){
         await exec('npm install')
