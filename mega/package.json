@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  ",
+    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\" ",
     "Deploy": "nodemon Deployment",
-    "Auth": "nodemon Authentication"
+    "Auth": "nodemon Authentication",
+    "View" : "nodemon View"
   },
   "dependencies": {
     "axios": "^0.25.0",
@@ -11,6 +12,7 @@
     "fastify-redis": "^4.3.3",
     "moment": "^2.29.1",
     "nodemon": "^2.0.15",
+    "point-of-view": "^5.0.0",
     "redis": "^4.0.2",
     "simple-git": "^3.0.3"
   },

@@ -1,0 +1,46 @@
+<html> 
+   
+    <head>
+        <title>
+            pvchannel
+        </title>
+        <style>
+         body {
+             direction: rtl;
+             display: flex;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             flex-direction: column;
+             background-color: rgba(0, 0, 0, 0.89);
+             overflow: hidden;
+         }
+         .htag{
+             color: rgb(16, 92, 6);
+         }
+         #ptag{
+             color  : rgb(139, 0, 0);
+             font-size: 3vmin;
+         }
+
+        </style>
+    </head>
+    <body>
+        <h1 class="htag">
+            به پی وی چنل خوش آمدید
+        </h1>
+        <h2 class="htag">
+            وبسایت در دست ساخت است
+        </h2>
+      
+         <p id = "ptag"></p> 
+    </body>
+</html>
+<script>
+    let date;
+    setInterval(()=>{
+        date =  new Date(Date.now()).toString().slice(16 ,24)
+        document.querySelector("#ptag").innerHTML = date
+    },1000);
+  
+</script>
