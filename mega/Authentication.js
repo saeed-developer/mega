@@ -3,7 +3,7 @@ const fastify = require('fastify')({ logger: true })
 const {sendOtpSchema} = require('./controllers/auth/authSchema')  
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify  
-fastify.post('/',{
+fastify.post('/mobile/check',{
   schema : sendOtpSchema, 
   handler : sendOtp    
 })
