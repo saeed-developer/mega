@@ -5,7 +5,7 @@ const fastify = require('fastify')({
       prettyPrint:
         process.env.ENVIRONMENT=== 'development'
           ? {
-              translateTime: 'HH:MM:ss Z',
+              translateTime: 'SYS:HH:MM:ss Z',
               ignore: 'pid,hostname',
               singleLine : 'true'
             }
