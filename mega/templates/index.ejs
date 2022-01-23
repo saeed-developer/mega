@@ -1,4 +1,6 @@
-<html> 
+
+
+  <html> 
    
     <head>
         <title>
@@ -22,7 +24,18 @@
              color  : rgb(139, 0, 0);
              font-size: 3vmin;
          }
+         .ptag {
+           font-size: 3vmin;  
+         color : rgb(16 ,92 ,6);
+         } 
+       .wrapper {
+display : flex;
+flex-direction : column;
+justify-content : center;
+align-items : center;
+ flex-wrap: wrap;
 
+}
         </style>
     </head>
     <body>
@@ -32,8 +45,12 @@
         <h2 class="htag">
             وب اپ در دست ساخت است
         </h2>
-      
-         <p id = "ptag"></p> 
+      <div class = 'wrapper'>
+         <p id = "ptag"></p>
+         <p  class = "ptag" >جهت همکاری در توسعه وب اپ پی وی چنل
+با این ایمیل در ارتباط باشید</p>
+<a href="mailto:pvchannelmedia@gmail.com" class = 'ptag'>pvchannelmedia@gmail.com</a>
+</div> 
     </body>
 </html>
 <script>
