@@ -1,4 +1,14 @@
-const fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({
+  logger: {
+      prettyPrint:
+        process.env.ENVIRONMENT=== 'development'
+          ? {
+              translateTime: 'HH:MM:ss Z',
+              ignore: 'pid,hostname'
+            }
+          : false
+    }
+})
 require('dotenv').config({path : './config/.env'})
 fastify.register(require("point-of-view"), {
     engine: {

@@ -1,5 +1,15 @@
 const { sendOtp } = require('./controllers/auth/sendOtp')
-const fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({
+  logger: {
+      prettyPrint:
+        process.env.ENVIRONMENT=== 'development'
+          ? {
+              translateTime: 'HH:MM:ss Z',
+              ignore: 'pid,hostname'
+            }
+          : false
+    }
+})
 const {sendOtpSchema} = require('./controllers/auth/authSchema')  
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify  
