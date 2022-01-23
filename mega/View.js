@@ -1,15 +1,16 @@
+require('dotenv').config({path : './config/.env'})
 const fastify = require('fastify')({
   logger: {
       prettyPrint:
         process.env.ENVIRONMENT=== 'development'
           ? {
               translateTime: 'HH:MM:ss Z',
-              ignore: 'pid,hostname'
+              ignore: 'pid,hostname',
+              singleLine : 'true'
             }
           : false
     }
 })
-require('dotenv').config({path : './config/.env'})
 fastify.register(require("point-of-view"), {
     engine: {
       ejs: require("ejs"),

@@ -1,16 +1,17 @@
+require('dotenv').config({path : './config/.env'})
 const fastify = require('fastify')({
     logger: {
         prettyPrint:
           process.env.ENVIRONMENT=== 'development'
             ? {
                 translateTime: 'HH:MM:ss Z',
-                ignore: 'pid,hostname'
+                ignore: 'pid,hostname',
+                singleLine : 'true'
               }
             : false
       }
   })
 const {masterBranch} = require('./controllers/deploy/master')
-require('dotenv').config({path : './config/.env'})
 fastify.post('/master' ,{handler : masterBranch})
 const start = async(port)=>{
     try { 
