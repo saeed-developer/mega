@@ -11,6 +11,7 @@ module.exports.masterBranch = async function(request, reply){
     if(header['x-hub-signature-256'] === `sha256=${hmac}`){
     const stash = await git.stash()
     const pull= await git.pull()
+    await exec(console.log(body.commits[0].modified))
     if(body.commits[0].modified.includes('mega/package.json')){
         console.log('package json changed')
       const {err, stdout, stderr} =  await exec(`cd ${process.env.ROOT_DIR} &&  npm i c`)
