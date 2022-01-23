@@ -12,7 +12,7 @@ module.exports.masterBranch = async function(request, reply){
     const stash = await git.stash()
     const pull= await git.pull()
     if(body.commits[0].modified.includes('mega/package.json')){
-        await exec('cd process.env.ROOT_DIR &&  npm i c')
+        await exec(`cd ${process.env.ROOT_DIR} &&  npm i c`)
     }
     reply.send({message : 'ok'}) 
     }
