@@ -1,13 +1,10 @@
 require('dotenv').config({path : './config/.env'})
+const { logger } = require('./global/globalObjects');
 const fastify = require('fastify')({
     logger: {
         prettyPrint:
           process.env.ENVIRONMENT=== 'development'
-            ? {
-                translateTime: 'SYS:HH:MM:ss Z',
-                ignore: 'pid,hostname',
-                singleLine : 'true'
-              }
+            ? logger
             : false
       }
   })
