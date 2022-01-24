@@ -19,6 +19,7 @@ fastify.register(require("point-of-view"), {
 fastify.get('/' , async function(request, reply){
    await reply.view("/templates/index.ejs"); 
 })
+fastify.get('/.well-known/acme-challenge/ov_SlfdEVE-v62ukdraON4cRp3j1n5cGtNfRXna1aGE',async (req , reply)=>{await reply.send('ov_SlfdEVE-v62ukdraON4cRp3j1n5cGtNfRXna1aGE.QBCTanhbSYhtiWUlUXVLo5egIqT10N7wIq_HAEh3PKs')})
 const start = async (port) => {
     try {
       await fastify.listen(port) 
