@@ -2,13 +2,10 @@ const { logger } = require('./global/globalObjects');
 
 require('dotenv').config({path : './config/.env'})
 const fastify = require('fastify')({
-  logger: {
-      prettyPrint:
-        process.env.ENVIRONMENT=== 'development'
-          ? logger 
-          : false
-    }
-})
+  logger: process.env.ENVIRONMENT=== 'development' ?{
+       prettyPrint:logger  
+     }:false
+ })
 fastify.register(require("point-of-view"), { 
     engine: {
       ejs: require("ejs"),

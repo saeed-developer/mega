@@ -2,13 +2,10 @@ require('dotenv').config({path : './config/.env'})
 const { sendOtp } = require('./controllers/auth/sendOtp')
 const { logger } = require('./global/globalObjects');
 const fastify = require('fastify')({
-  logger: {
-      prettyPrint:
-        process.env.ENVIRONMENT=== 'development'
-          ? logger
-          : false
-    }
-})
+  logger: process.env.ENVIRONMENT=== 'development' ?{
+       prettyPrint:logger  
+     }:false
+ })
 const {sendOtpSchema} = require('./controllers/auth/authSchema')  
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify  
