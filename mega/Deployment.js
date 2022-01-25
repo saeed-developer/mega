@@ -10,6 +10,7 @@ fastify.post('/master' ,{handler : masterBranch})
 const start = async(port)=>{
     try { 
            fastify.listen(port) 
+           console.log(`deploy port ${port} started`)
     }
     catch (err){
     console.log.error(err)

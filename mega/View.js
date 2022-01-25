@@ -17,6 +17,7 @@ fastify.get('/' , async function(request, reply){
 const start = async (port) => {
     try {
       await fastify.listen(port) 
+      console.log(`view port ${port} started`)
     } catch (err) {
       fastify.log.error(err)
       process.exit(1)
