@@ -6,12 +6,17 @@ const fastify = require('fastify')({
        prettyPrint:logger  
      }:false
  })
-const {sendOtpSchema} = require('./controllers/auth/authSchema')  
+const {sendOtpSchema, VerifyOtpSchema} = require('./controllers/auth/authSchema');  
+const { verifyOtp } = require('./controllers/auth/verifyOtp');
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify  
 fastify.post('/mobile/check',{
   schema : sendOtpSchema, 
   handler : sendOtp    
+}) 
+fastify.post('/mobile/verify', {
+  shcema:VerifyOtpSchema,
+  handler:verifyOtp
 })
 require('dotenv').config({path : './config/.env'})
 const start = async (port) => {

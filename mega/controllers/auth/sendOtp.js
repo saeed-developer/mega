@@ -14,7 +14,6 @@ module.exports.sendOtp =  async function  (request , reply){
     "to" : [String(request.body.number)],     
   })
   if(farazsms.status === 200){
-    console.log('farazsms ======>',farazsms.status)
   await this.redis.set(request.body.number, otp , "EX",180 )           
   reply.send({message : 'sms has sent'})  
   }}  
