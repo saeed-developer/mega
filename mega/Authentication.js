@@ -1,5 +1,6 @@
 require('dotenv').config({path : './config/.env'})
 const { sendOtp } = require('./controllers/auth/sendOtp')
+const mysql = require('mysql');
 const { logger } = require('./global/globalObjects');
 const fastify = require('fastify')({
   logger: process.env.ENVIRONMENT=== 'development' ?{
@@ -7,6 +8,20 @@ const fastify = require('fastify')({
      }:false
  })
 const {sendOtpSchema, VerifyOtpSchema} = require('./controllers/auth/authSchema');  
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'main'
+});
+connection.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+
+  console.log('Connected to the MySQL server.');
+});
+
 const { verifyOtp } = require('./controllers/auth/verifyOtp');
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify  

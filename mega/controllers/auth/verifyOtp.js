@@ -1,3 +1,4 @@
+const mysql = require('mysql');
 module.exports.verifyOtp =async function (request , reply){
     const {number , code} = request.body
     const otp = await this.redis.get(number)
