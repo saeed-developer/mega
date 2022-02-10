@@ -1,9 +1,9 @@
 {
   "scripts": {
     "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\" ",
-    "Deploy": "nodemon Deployment",
-    "Auth": "nodemon Authentication",
-    "View": "nodemon View"
+    "Deploy": "cd services;nodemon Deployment",
+    "Auth": "cd services;nodemon Authentication.js",
+    "View": "cd services;nodemon View"
   },
   "dependencies": {
     "axios": "^0.25.0",
@@ -14,7 +14,7 @@
     "fastify-multipart": "^5.3.0",
     "fastify-redis": "^4.3.3",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15",
+    "mysql2": "^2.3.3",
     "pino-pretty": "^7.5.0",
     "point-of-view": "^5.0.0",
     "redis": "^4.0.2",
@@ -22,7 +22,6 @@
   },
   "name": "mega",
   "version": "1.0.0",
-  "main": "server.js",
   "repository": "https://github.com/saeed-developer/mega.git",
   "author": "saeed",
   "license": "MIT",
@@ -30,6 +29,7 @@
     "concurrently": "^7.0.0",
     "dotenv": "^14.2.0",
     "eslint": "^8.7.0",
+    "nodemon": "^2.0.15",
     "yarn": "^1.22.17"
   }
 }

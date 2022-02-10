@@ -1,6 +1,6 @@
-const { logger } = require('./global/globalObjects');
+const { logger } = require('../global/globalObjects');
 
-require('dotenv').config({path : './config/.env'})
+require('dotenv').config({path : './../config/.env'})
 const fastify = require('fastify')({
   logger: process.env.ENVIRONMENT=== 'development' ?{
        prettyPrint:logger  
