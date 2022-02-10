@@ -12,7 +12,7 @@ fastify.register(require("point-of-view"), {
     },
   });
 fastify.get('/' , async function(request, reply){
-   await reply.view("/templates/index.ejs"); 
+   await reply.view("./../templates/index.ejs"); 
 })
 const start = async (port) => {
     try {
