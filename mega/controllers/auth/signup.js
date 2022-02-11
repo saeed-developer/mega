@@ -6,10 +6,31 @@ const {number , username , password , firstName , lastName} = request.body
 const saltRounds = 10
 const hash = await bcrypt.hash(password, saltRounds)
 const user = new User(number , username , hash , firstName , lastName)
-await user.save()
+const saveUser = await user.save()
+console.log(saveUser)
 reply.send({message : 'ok'})
 }
 catch(err){
-    throw err
+    if(err.errno){
+        if( err.sqlMessage = "Duplicate entry '1255565462' for key 'users.phone'")
+        {
+    reply.code(409).send({
+         message : {
+          english : 'phone already exist',
+         persian : 'این شماره قبلا ثبت شده است'   
+         }        
+     })
+ 
+        }
+     else if (err.sqlMessage = "Duplicate entry '1255565462' for key 'users.phone'"){
+        reply.code(409).send({
+            message :{
+            english : 'username already exist',
+            persian : 'این نام کاربری قبلا ثبت شده است'    
+            }
+        })
+     }
+    }
+   
 }
 }

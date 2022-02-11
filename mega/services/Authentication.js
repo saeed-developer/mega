@@ -33,14 +33,14 @@ fastify.post('/mobile/check',{
 fastify.post('/mobile/verify', {
   shcema:VerifyOtpSchema,
   handler:verifyOtp
-})
+}) 
 //fastify.post('/login')
 fastify.post('/signup',{      
   schema :signupScheme,
   handler : signup
 })
 //fastify.post('/refresh')
-
+  
 require('dotenv').config({path : './config/.env'})
 const start = async (port) => {
   try {
@@ -48,7 +48,7 @@ const start = async (port) => {
     console.log(`auth port ${port} started`)
   } catch (err) {
     fastify.log.error(err)
-    process.exit(1)
+    process.exit(1)      
   }
 }
 start(process.env.AUTH_PORT) ;      
