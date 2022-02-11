@@ -12,7 +12,7 @@ reply.send({message : 'ok'})
 }
 catch(err){
     if(err.errno === 1062){
-        if( err.sqlMessage = "Duplicate entry '1255565462' for key 'users.phone'")
+        if( /users.phone/.test(err.sqlMessage))
         {
     reply.code(409).send({
          message : {
@@ -22,7 +22,7 @@ catch(err){
      })
  
         }
-     else if (err.sqlMessage = "Duplicate entry '1255565462' for key 'users.namename'"){
+     else if (/users.username/.test(err.sqlMessage)){
         reply.code(409).send({
             message :{
             english : 'username already exist',
