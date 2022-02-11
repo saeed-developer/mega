@@ -1,17 +1,17 @@
 module.exports = {
   apps : [{
     name   : "View",
-    script : "View.js",
+    script : "cd services/View.js",
     watch: true
   },
 {
 name : "Auth",
-script : "Authentication.js",
+script : "cd services/Authentication.js",
 watch : true,
 },
 {
 name : "Deploy",
-script : "Deployment.js",
+script : "cd services/Deployment.js",
 watch : true
 }
 

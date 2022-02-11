@@ -6,11 +6,12 @@ const fastify = require('fastify')({
        prettyPrint:logger  
      }:false
  })
-const {sendOtpSchema, VerifyOtpSchema, signupScheme} = require('../controllers/auth/authSchema');  
+const {sendOtpSchema, VerifyOtpSchema, signupScheme, loginSchema} = require('../controllers/auth/authSchema');  
 const { verifyOtp } = require('../controllers/auth/verifyOtp');
 const {pool} = require('./../config/db');
 const User = require('../models/User');
 const { signup } = require('../controllers/auth/signup');
+const { login } = require('../controllers/auth/login');
 fastify.register(require('fastify-redis'), { host: '127.0.0.1' })
 const {redis} = fastify 
   const query =  (async ()=>{
@@ -24,17 +25,20 @@ const {redis} = fastify
     catch(err){
       throw err       
     }
-    
+     
    })()
 fastify.post('/mobile/check',{
-  schema : sendOtpSchema,      
+  schema : sendOtpSchema,          
   handler : sendOtp    
 }) 
 fastify.post('/mobile/verify', {
   shcema:VerifyOtpSchema,
   handler:verifyOtp
 }) 
-//fastify.post('/login')
+fastify.post('/login' , {
+  schema : loginSchema,
+  handler : login  
+})
 fastify.post('/signup',{      
   schema :signupScheme,
   handler : signup
