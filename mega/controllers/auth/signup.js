@@ -11,7 +11,7 @@ console.log(saveUser)
 reply.send({message : 'ok'})
 }
 catch(err){
-    if(err.errno){
+    if(err.errno === 1062){
         if( err.sqlMessage = "Duplicate entry '1255565462' for key 'users.phone'")
         {
     reply.code(409).send({
@@ -22,7 +22,7 @@ catch(err){
      })
  
         }
-     else if (err.sqlMessage = "Duplicate entry '1255565462' for key 'users.phone'"){
+     else if (err.sqlMessage = "Duplicate entry '1255565462' for key 'users.namename'"){
         reply.code(409).send({
             message :{
             english : 'username already exist',
@@ -31,6 +31,7 @@ catch(err){
         })
      }
     }
+    else throw err
    
 }
 }
