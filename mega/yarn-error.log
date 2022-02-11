@@ -1,0 +1,61 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)
+
+npm manifest: 
+  {
+    "scripts": {
+      "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\" ",
+      "Deploy": "cd services;nodemon Deployment",
+      "Auth": "cd services;nodemon Authentication.js",
+      "View": "cd services;nodemon View"
+    },
+    "dependencies": {
+      "axios": "^0.25.0",
+      "cors": "^2.8.5",
+      "ejs": "^3.1.6",
+      "fastify": "^3.27.0",
+      "fastify-jwt": "^4.1.3",
+      "fastify-multipart": "^5.3.0",
+      "fastify-redis": "^4.3.3",
+      "mysql": "^2.18.1",
+      "mysql2": "^2.3.3",
+      "pino-pretty": "^7.5.0",
+      "point-of-view": "^5.0.0",
+      "redis": "^4.0.2",
+      "simple-git": "^3.0.3"
+    },
+    "name": "mega",
+    "version": "1.0.0",
+    "repository": "https://github.com/saeed-developer/mega.git",
+    "author": "saeed",
+    "license": "MIT",
+    "devDependencies": {
+      "concurrently": "^7.0.0",
+      "dotenv": "^14.2.0",
+      "eslint": "^8.7.0",
+      "nodemon": "^2.0.15",
+      "yarn": "^1.22.17"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
