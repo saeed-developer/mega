@@ -1,11 +1,11 @@
-require('dotenv').config({path : './../config/.env'})
-const { logger } = require('../global/globalObjects');
+require('dotenv').config({path : './config/.env'})
+const { logger } = require('./global/globalObjects');
 const fastify = require('fastify')({
   logger: process.env.ENVIRONMENT=== 'development' ?{
        prettyPrint:logger  
      }:false
  })
-const {masterBranch} = require('../controllers/deploy/master')
+const {masterBranch} = require('./controllers/deploy/master')
 fastify.post('/master' ,{handler : masterBranch})
 const start = async(port)=>{
     try { 

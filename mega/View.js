@@ -1,6 +1,6 @@
-const { logger } = require('../global/globalObjects');
+const { logger } = require('./global/globalObjects');
 
-require('dotenv').config({path : './../config/.env'})
+require('dotenv').config({path : './config/.env'})
 const fastify = require('fastify')({
   logger: process.env.ENVIRONMENT=== 'development' ?{
        prettyPrint:logger  
@@ -12,7 +12,7 @@ fastify.register(require("point-of-view"), {
     },
   });
 fastify.get('/' , async function(request, reply){
-   await reply.view("./../templates/index.ejs"); 
+   await reply.view("./templates/index.ejs"); 
 })
 const start = async (port) => {
     try {
