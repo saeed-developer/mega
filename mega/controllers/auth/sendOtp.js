@@ -12,8 +12,8 @@ module.exports.sendOtp = async function (request, reply) {
     }
     const farazsms = await axios.post("http://ippanel.com/api/select", {
       op: "send",
-      uname: "09374613195",
-      pass: "faraz3242056663",
+      uname: process.env.SMS_UNAME,
+      pass: process.env.SMS_PASSWD,
       message: `کدتایید شما در پیوی چنل: ${otp} \n زمان ارسال : ${new Date(
         Date.now()
       )
