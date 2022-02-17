@@ -18,12 +18,14 @@ const {
   VerifyOtpSchema,
   signupScheme,
   loginSchema,
+  refreshSchema,
 } = require("./controllers/auth/authSchema");
 const { verifyOtp } = require("./controllers/auth/verifyOtp");
 const { pool } = require("./config/db");
 const User = require("./models/User");
 const { signup } = require("./controllers/auth/signup");
 const { login } = require("./controllers/auth/login");
+const { refresh } = require("./controllers/auth/refresh");
 fastify.register(require("fastify-redis"), { host: "127.0.0.1" });
 const { redis } = fastify;
 const query = (async () => {
@@ -53,7 +55,10 @@ fastify.post("/signup", {
   schema: signupScheme,
   handler: signup,
 });
-//fastify.post('/refresh')
+fastify.post("/refresh", {
+  shcema: refreshSchema,
+  handler: refresh,
+});
 
 require("dotenv").config({ path: "./config/.env" });
 const start = async (port) => {
