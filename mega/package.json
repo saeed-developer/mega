@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\" ",
-    "Deploy": "cd services;nodemon Deployment",
-    "Auth": "cd services;nodemon Authentication.js",
-    "View": "cd services;nodemon View"
+    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\"  \" npm run Chat\" ",
+    "Deploy": "nodemon Deployment",
+    "Auth": "nodemon Authentication.js",
+    "View": "nodemon View",
+    "Chat": "nodemon Chat"
   },
   "dependencies": {
     "axios": "^0.25.0",
