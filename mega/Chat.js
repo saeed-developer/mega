@@ -8,6 +8,11 @@ const fastify = require("fastify")({
       : false,
 });
 const { pool } = require("./config/db");
+const { add, addContact } = require("./controllers/chat/add");
+const { all, allContacts } = require("./controllers/chat/all");
+const { addShema, deleteSchema } = require("./controllers/chat/chatSchema");
+const { deleteContact } = require("./controllers/chat/delete");
+const { find, findContact } = require("./controllers/chat/find");
 const User = require("./models/User");
 const query = (async () => {
   try {
@@ -19,7 +24,16 @@ const query = (async () => {
     throw err;
   }
 })();
-//fastify.post("/contacts");
+fastify.get("/contacts/find", findContact);
+//fastify.get("contacts/all", allContacts);
+// fastify.post("/contacts/add", {
+//   schema: addShema,
+//   handler: addContact,
+// });
+// fastify.post("/contacts/delete", {
+//   schema: deleteSchema,
+//   handler: deleteContact,
+// });
 const start = async (port) => {
   try {
     await fastify.listen(port);
