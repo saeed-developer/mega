@@ -1,4 +1,5 @@
 require("dotenv").config({ path: "./config/.env" });
+const { logger } = require("./global/globalObjects");
 const fastify = require("fastify")({
   logger:
     process.env.ENVIRONMENT === "development"
@@ -7,6 +8,8 @@ const fastify = require("fastify")({
         }
       : false,
 });
+const { verifyJwt } = require("./plugins/verifyJwt");
+verifyJwt(fastify);
 const { pool } = require("./config/db");
 const { add, addContact } = require("./controllers/chat/add");
 const { all, allContacts } = require("./controllers/chat/all");
@@ -24,7 +27,13 @@ const query = (async () => {
     throw err;
   }
 })();
-fastify.get("/contacts/find", findContact);
+fastify.get(
+  "/contacts/find",
+  {
+    onRequest: [fastify.authenticate],
+  },
+  findContact
+);
 //fastify.get("contacts/all", allContacts);
 // fastify.post("/contacts/add", {
 //   schema: addShema,
