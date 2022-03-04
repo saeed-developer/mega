@@ -21,7 +21,7 @@ const query = (async () => {
   try {
     const createTable = await pool.execute(`
       CREATE TABLE IF NOT EXISTS  contacts ( id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-        user_id INT NOT NULL, contact_id VARCHAR(255) NOT NULL UNIQUE,
+        user_id INT NOT NULL, contact_id VARCHAR(255) NOT NULL ,
        FOREIGN KEY (user_id) REFERENCES users(id),created_at DATETIME DEFAULT CURRENT_TIMESTAMP)`);
   } catch (err) {
     throw err;
@@ -34,15 +34,23 @@ fastify.get(
   },
   findContact
 );
-//fastify.get("contacts/all", allContacts);
-// fastify.post("/contacts/add", {
-//   schema: addShema,
-//   handler: addContact,
-// });
-// fastify.post("/contacts/delete", {
-//   schema: deleteSchema,
-//   handler: deleteContact,
-// });
+fastify.get(
+  "/contacts/all",
+  {
+    onRequest: [fastify.authenticate],
+  },
+  allContacts
+);
+fastify.post("/contacts/add", {
+  onRequest: [fastify.authenticate],
+  schema: addShema,
+  handler: addContact,
+});
+fastify.post("/contacts/delete", {
+  onRequest: [fastify.authenticate],
+  schema: deleteSchema,
+  handler: deleteContact,
+});
 const start = async (port) => {
   try {
     await fastify.listen(port);
