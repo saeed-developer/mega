@@ -5,9 +5,9 @@ class Contact {
     this.contactId = contactId;
   }
   async save() {
-    const sql = `INSERT INTO contacts (user_id , contact_id) SELECT ${
+    const sql = `INSERT INTO contacts (user_id , contact_id) SELECT ${Number(
       this.userId
-    }, ${this.contactId} WHERE NOT EXISTS (
+    )}, ${Number(this.contactId)} WHERE NOT EXISTS (
         SELECT * FROM
           contacts
         WHERE
