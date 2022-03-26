@@ -13,6 +13,8 @@ const fastify = require("fastify")({
 fastify.register(jwt, {
   secret: process.env.JWT_SECRET,
 });
+fastify.register(require("fastify-cors"));
+
 const {
   sendOtpSchema,
   VerifyOtpSchema,
