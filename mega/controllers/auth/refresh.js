@@ -1,10 +1,9 @@
 module.exports.refresh = async function (request, reply) {
-  const { refreshToken } = request.body;
+  const { refresh: refreshToken } = request.body;
   try {
     const check = await this.jwt.verify(refreshToken, {
       key: process.env.JWT_REFRESH,
     });
-    console.log(check);
     const access = await this.jwt.sign(
       {
         username: check.username,

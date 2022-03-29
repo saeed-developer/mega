@@ -9,6 +9,7 @@ const fastify = require("fastify")({
       : false,
 });
 const { verifyJwt } = require("./plugins/verifyJwt");
+fastify.register(require("fastify-cors"));
 verifyJwt(fastify);
 const { pool } = require("./config/db");
 const { add, addContact } = require("./controllers/chat/add");
