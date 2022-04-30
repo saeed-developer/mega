@@ -4,11 +4,15 @@ module.exports = {
       name: "View",
       script: "View.js",
       watch: true,
+      instances : "max",
+      exec_mode : "cluster"
     },
     {
       name: "Auth",
       script: "Authentication.js",
       watch: true,
+      instances : "max",
+      exec_mode : "cluster"
     },
     {
       name: "Deploy",
@@ -19,6 +23,8 @@ module.exports = {
       name: "Chat",
       script: "Chat.js",
       watch: true,
+      instances : "max",
+      exec_mode : "cluster"
     },
   ],
 };
