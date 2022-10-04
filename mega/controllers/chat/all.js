@@ -8,7 +8,7 @@ module.exports.allContacts = async function (request, reply) {
   if (allContacts.length > 0) {
     reply.send(allContacts);
   } else {
-    reply.code(404).send({
+    reply.code(200).send({
       message: {
         persian: "لیست مخاطبین خالی است!",
         english: "The contact list is empty",
