@@ -41,23 +41,23 @@ const query = (async () => {
     throw err;
   }
 })();
-fastify.post("/mobile/check", {
+fastify.post("auth/mobile/check", {
   schema: sendOtpSchema,
   handler: sendOtp,
 });
-fastify.post("/mobile/verify", {
+fastify.post("auth/mobile/verify", {
   shcema: VerifyOtpSchema,
   handler: verifyOtp,
 });
-fastify.post("/login", {
+fastify.post("auth/login", {
   schema: loginSchema,
   handler: login,
 });
-fastify.post("/signup", {
+fastify.post("auth/signup", {
   schema: signupScheme,
   handler: signup,
 });
-fastify.post("/refresh", {
+fastify.post("auth/refresh", {
   shcema: refreshSchema,
   handler: refresh,
 });
