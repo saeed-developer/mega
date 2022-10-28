@@ -23,6 +23,7 @@ module.exports.refresh = async function (request, reply) {
     reply.code(403).send({
       message: {
         persian: "دوباره وارد شوید",
+        english: "Try to login again",
       },
     });
   }
