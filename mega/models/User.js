@@ -19,7 +19,7 @@ class User {
   }
 
   async save() {
-    const sql = `INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES (${this.phone}, "${this.username}" ,
+    const sql = `INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES ("${this.phone}", "${this.username}" ,
         "${this.password}" ,"${this.firstName}" , "${this.lastName}" , "${this.email}")`;
     await pool.execute(sql);
   }
