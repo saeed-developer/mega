@@ -19,11 +19,15 @@ module.exports.VerifyOtpSchema = {
 module.exports.signupScheme = {
   body: {
     type: "object",
-    required: ["number", "password", "username"],
+    required: ["password", "username", "email"],
     properties: {
       number: { type: "string", maxLength: 13 },
       password: { type: "string", minLength: 8 },
       username: { type: "string" },
+      email: {
+        type: "string",
+        pattern: "[a-z0-9]+@[a-z]+.[a-z]{2,3}",
+      },
       firstName: { type: "string" },
       lastName: { type: "string" },
     },

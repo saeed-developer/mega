@@ -1,9 +1,10 @@
 const { pool } = require("./../config/db");
 class User {
   constructor(
-    phone,
+    phone = null,
     username,
     password,
+    email,
     firstName = null,
     lastName = null,
     id
@@ -14,11 +15,12 @@ class User {
     this.lastName = lastName;
     this.id = id;
     this.password = password;
+    this.email = email;
   }
 
   async save() {
-    const sql = `INSERT INTO users (phone , username , password , first_name , last_name) VALUES (${this.phone}, "${this.username}" ,
-        "${this.password}" ,  "${this.firstName}" , "${this.lastName}")`;
+    const sql = `INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES (${this.phone}, "${this.username}" ,
+        "${this.password}" ,"${this.firstName}" , "${this.lastName}" , "${this.email}")`;
     await pool.execute(sql);
   }
   async findById(id) {
