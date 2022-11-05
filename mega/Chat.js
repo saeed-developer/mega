@@ -29,25 +29,25 @@ const query = (async () => {
   }
 })();
 fastify.get(
-  "/contacts/find",
+  "chat/contacts/find",
   {
     onRequest: [fastify.authenticate],
   },
   findContact
 );
 fastify.get(
-  "/contacts/all",
+  "chat/contacts/all",
   {
     onRequest: [fastify.authenticate],
   },
   allContacts
 );
-fastify.post("/contacts/add", {
+fastify.post("chat/contacts/add", {
   onRequest: [fastify.authenticate],
   schema: addShema,
   handler: addContact,
 });
-fastify.post("/contacts/delete", {
+fastify.post("chat/contacts/delete", {
   onRequest: [fastify.authenticate],
   schema: deleteSchema,
   handler: deleteContact,
