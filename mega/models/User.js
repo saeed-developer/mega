@@ -9,7 +9,7 @@ class User {
     lastName = null,
     id
   ) {
-    this.phone = Number(phone);
+    this.phone = phone;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;

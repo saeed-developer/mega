@@ -6,7 +6,18 @@ module.exports.signup = async function (request, reply) {
       request.body;
     const saltRounds = 10;
     const hash = await bcrypt.hash(password, saltRounds);
-    const user = new User(number, username, email, hash, firstName, lastName);
+    let phoneNumber;
+    if (number) {
+      phoneNumber = Number(number);
+    }
+    const user = new User(
+      phoneNumber,
+      username,
+      email,
+      hash,
+      firstName,
+      lastName
+    );
     const saveUser = await user.save();
     console.log(saveUser);
     reply.send({
