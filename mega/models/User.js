@@ -19,16 +19,17 @@ class User {
   }
 
   async save() {
-    const sql =
-      "INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES (?,?,?,?,?,?)";
-
-    await pool.execute(sql, [
-      this.phone,
-      this.password,
-      this.firstName,
-      this.lastName,
-      this.email,
-    ]);
+    await pool.execute(
+      "INSERT INTO users (phone,username,password,first_name,last_name,email) VALUES (?,?,?,?,?,?)",
+      [
+        this.phone,
+        this.username,
+        this.password,
+        this.firstName,
+        this.lastName,
+        this.email,
+      ]
+    );
   }
   async findById(id) {
     const sql = `select * from users where id = ${id}`;
