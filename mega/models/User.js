@@ -4,10 +4,10 @@ class User {
     phone = null,
     username,
     password,
-    email,
     firstName = null,
     lastName = null,
-    id
+    email,
+    id = null
   ) {
     this.phone = phone;
     this.username = username;

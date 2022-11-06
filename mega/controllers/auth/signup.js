@@ -13,10 +13,10 @@ module.exports.signup = async function (request, reply) {
     const user = new User(
       phoneNumber,
       username,
-      email,
       hash,
       firstName,
-      lastName
+      lastName,
+      email
     );
     const saveUser = await user.save();
     console.log(saveUser);
