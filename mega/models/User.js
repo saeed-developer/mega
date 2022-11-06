@@ -19,8 +19,9 @@ class User {
   }
 
   async save() {
-    const sql = `INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES (?,? ,
-       ? ,? , ? , ?)`;
+    const sql =
+      "INSERT INTO users (phone , username , password  , first_name , last_name , email) VALUES (?,?,?,?,?,?)";
+
     await pool.execute(sql, [
       this.phone,
       this.password,
