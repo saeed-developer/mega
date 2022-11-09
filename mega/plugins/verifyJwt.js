@@ -14,7 +14,7 @@ module.exports.verifyJwt = fp(async function (fastify, opts) {
         request.user = decoded;
       }
     } catch (err) {
-      reply.code(401).send(err);
+      reply.code(403).send(err);
     }
   });
 });
