@@ -9,7 +9,7 @@ module.exports.refresh = async function (request, reply) {
         username: check.username,
         id: check.id,
       },
-      { expiresIn: "1h" }
+      { expiresIn: "200000" }
     );
     const refresh = await this.jwt.sign(
       {
@@ -20,7 +20,7 @@ module.exports.refresh = async function (request, reply) {
     );
     reply.send({ access: access, refresh: refresh });
   } catch (err) {
-    reply.code(403).send({
+    reply.code(406).send({
       message: {
         persian: "دوباره وارد شوید",
         english: "Try to login again",
