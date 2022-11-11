@@ -5,7 +5,7 @@ module.exports.refresh = async function (request, reply) {
       key: process.env.JWT_REFRESH,
     });
     const key = await this.redis.get(check.id);
-    if (key !== refreshToken) {
+    if (key && key !== refreshToken && check) {
       reply.code(406).send({
         message: {
           persian: "شما از دستگاه دیگری وارد شده اید دوباره وارد شوید",
@@ -18,7 +18,7 @@ module.exports.refresh = async function (request, reply) {
         username: check.username,
         id: check.id,
       },
-      { expiresIn: "200000" }
+      { expiresIn: "100000" }
     );
     const refresh = await this.jwt.sign(
       {
