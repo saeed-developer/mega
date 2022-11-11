@@ -17,6 +17,7 @@ module.exports.verifyOtp = async function (request, reply) {
       },
       { key: process.env.JWT_REFRESH, expiresIn: "7 days" }
     );
+    await this.redis.set(data[0].id, refresh, "EX", 60 * 60 * 24 * 7);
     reply.send({ access: access, refresh: refresh });
   } else {
     reply.status(401).send({

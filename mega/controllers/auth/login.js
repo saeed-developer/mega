@@ -21,14 +21,17 @@ module.exports.login = async function (request, reply) {
         },
         { key: process.env.JWT_REFRESH, expiresIn: "7 days" }
       );
+      await this.redis.set(data[0].id, refresh, "EX", 60 * 60 * 24 * 7);
       reply.send({ access: access, refresh: refresh });
+    } else {
+      reply.code(401).send({
+        message: {
+          english: "your username or password wrong",
+          persian: "نام کاربری یا گذرواژه شما اشتباه است",
+        },
+      });
     }
   } catch (err) {
-    reply.code(401).send({
-      message: {
-        english: "your username or password wrong",
-        persian: "نام کاربری یا گذرواژه شما اشتباه است",
-      },
-    });
+    throw err;
   }
 };
