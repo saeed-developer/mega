@@ -18,7 +18,7 @@ module.exports.refresh = async function (request, reply) {
         username: check.username,
         id: check.id,
       },
-      { expiresIn: "100000" }
+      { expiresIn: "60000" }
     );
     const refresh = await this.jwt.sign(
       {

@@ -12,7 +12,7 @@ module.exports.login = async function (request, reply) {
           username: username,
           id: data[0].id,
         },
-        { expiresIn: "100000" }
+        { expiresIn: "60000" }
       );
       const refresh = await this.jwt.sign(
         {
