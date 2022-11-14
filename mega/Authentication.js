@@ -28,6 +28,7 @@ const User = require("./models/User");
 const { signup } = require("./controllers/auth/signup");
 const { login } = require("./controllers/auth/login");
 const { refresh } = require("./controllers/auth/refresh");
+const { logout } = require("./controllers/auth/logout");
 fastify.register(require("fastify-redis"), { host: "127.0.0.1" });
 const { redis } = fastify;
 const query = (async () => {
@@ -61,7 +62,9 @@ fastify.post("/auth/refresh", {
   shcema: refreshSchema,
   handler: refresh,
 });
-
+fastify.post("/auth/logout", {
+  handler: logout,
+});
 require("dotenv").config({ path: "./config/.env" });
 const start = async (port) => {
   try {
