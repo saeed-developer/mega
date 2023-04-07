@@ -1,6 +1,29 @@
-
 version: '3.8'
 services:
+  web:
+    env_file:
+      - ./config/.env
+    depends_on:
+      - db 
+      - redis
+    image: auth-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+  redis:
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - 6379:6379
+    volumes:
+      - .db:/data
+    restart: always
+    entrypoint: redis-server --appendonly yes
+
   db:
     image: mysql:8.0
     env_file:
