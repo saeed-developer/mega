@@ -1,11 +1,6 @@
 {
   "scripts": {
-    "start": "concurrently \"npm run Deploy \"   \"npm run Auth\"  \"npm run View\"  \" npm run Chat\" \"npm run ChatRoom\" ",
-    "Deploy": "nodemon Deployment",
-    "Auth": "nodemon Authentication.js",
-    "View": "nodemon View",
-    "Chat": "nodemon Chat",
-    "ChatRoom": "nodemon ChatRoom"
+    "Auth": "node Authentication.js"
   },
   "dependencies": {
     "axios": "^0.25.0",

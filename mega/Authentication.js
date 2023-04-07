@@ -1,5 +1,4 @@
 require("dotenv").config({ path: "./config/.env" });
-const { sendOtp } = require("./controllers/auth/sendOtp");
 const { logger } = require("./global/globalObjects");
 const jwt = require("fastify-jwt");
 const fastify = require("fastify")({
@@ -16,13 +15,10 @@ fastify.register(jwt, {
 fastify.register(require("fastify-cors"));
 
 const {
-  sendOtpSchema,
-  VerifyOtpSchema,
   signupScheme,
   loginSchema,
   refreshSchema,
 } = require("./controllers/auth/authSchema");
-const { verifyOtp } = require("./controllers/auth/verifyOtp");
 const { pool } = require("./config/db");
 const User = require("./models/User");
 const { signup } = require("./controllers/auth/signup");
@@ -42,14 +38,6 @@ const query = (async () => {
     throw err;
   }
 })();
-fastify.post("/auth/mobile/check", {
-  schema: sendOtpSchema,
-  handler: sendOtp,
-});
-fastify.post("/auth/mobile/verify", {
-  shcema: VerifyOtpSchema,
-  handler: verifyOtp,
-});
 fastify.post("/auth/login", {
   schema: loginSchema,
   handler: login,
