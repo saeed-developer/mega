@@ -25,7 +25,7 @@ const { signup } = require("./controllers/auth/signup");
 const { login } = require("./controllers/auth/login");
 const { refresh } = require("./controllers/auth/refresh");
 const { logout } = require("./controllers/auth/logout");
-fastify.register(require("fastify-redis"), { host: "127.0.0.1" });
+fastify.register(require("fastify-redis"), { host: process.env.REDIS_HOST});
 const { redis } = fastify;
 const query = (async () => {
   try {

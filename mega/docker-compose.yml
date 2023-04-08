@@ -1,5 +1,28 @@
 version: '3.8'
 services:
+  redis:
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - 6379:6379
+    restart: always
+    entrypoint: redis-server --appendonly yes
+    networks:
+        - redis-net
+  db:
+    image: mysql:8.0
+    env_file:
+     - ./config/.env
+    restart: always
+    environment:
+      - MYSQL_DATABASE:$MYSQL_DATABASE
+      - MYSQL_ROOT_PASSWORD:$MYSQL_ROOT_PASSWORD
+    ports:
+      - 3306:3306
+    networks:
+        - db-net
   web:
     env_file:
       - ./config/.env
@@ -12,32 +35,13 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 8080:8080
-  redis:
-    image: redis
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
-    ports:
-      - 6379:6379
-    volumes:
-      - .db:/data
-    restart: always
-    entrypoint: redis-server --appendonly yes
+    networks:
+        - db-net
+        - redis-net
+    stdin_open: true
+    tty: true
+networks:
+    db-net:
+    redis-net:
 
-  db:
-    image: mysql:8.0
-    env_file:
-      - ./config/.env
-    container_name: mega
-    restart: always
-    environment:
-      - MYSQL_DATABASE=DB_DATABASE
-      - MYSQL_ROOT_PASSWORD=DB_PASSWORD
-    ports:
-      - '3306:3306'
-    volumes:
-      - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-volumes:
-  db:
-    driver: local
+
