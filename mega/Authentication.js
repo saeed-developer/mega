@@ -56,8 +56,8 @@ fastify.post("/auth/logout", {
 require("dotenv").config({ path: "./config/.env" });
 const start = async (port) => {
   try {
-    await fastify.listen(port);
-    console.log(`auth port ${port} started`);
+    await fastify.listen(port , '0.0.0.0');
+    console.log(`AUTH port ${port} started`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

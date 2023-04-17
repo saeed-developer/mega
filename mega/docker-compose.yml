@@ -34,12 +34,10 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 8080:8080
+      - 8080:3002
     networks:
         - db-net
         - redis-net
-    stdin_open: true
-    tty: true
 networks:
     db-net:
     redis-net:
